@@ -28,11 +28,31 @@ class DatabaseSeeder extends Seeder
 
         (new AdminSeeder)->run();
 
-        if (!Barcode::exists()) {
-            Barcode::factory(1)->create(['name' => 'QR Code Kantor Pusat']);
+        // 3 QR Code lokasi di area Jakarta Pusat
+        $locations = [
+            ['name' => 'Kantor Pusat Jakarta', 'value' => 'MAZ-HQ-JAKARTA', 'lat' => -6.2088, 'lng' => 106.8456, 'radius' => 100],
+            ['name' => 'Ruang Meeting Utama', 'value' => 'MAZ-MEETING-01', 'lat' => -6.2089, 'lng' => 106.8457, 'radius' => 30],
+            ['name' => 'Cabang Kemang', 'value' => 'MAZ-CABANG-KMG', 'lat' => -6.2633, 'lng' => 106.8133, 'radius' => 75],
+        ];
+        foreach ($locations as $loc) {
+            Barcode::firstOrCreate(
+                ['value' => $loc['value']],
+                [
+                    'name' => $loc['name'],
+                    'latitude' => $loc['lat'],
+                    'longitude' => $loc['lng'],
+                    'radius' => $loc['radius'],
+                ]
+            );
         }
+
         if (!Shift::exists()) {
             Shift::factory(2)->create();
         }
+
+        // Data dummy lengkap untuk presentasi / screenshot
+        (new EmployeeSeeder)->run();
+        (new AttendanceSeeder)->run();
+        (new LeaveRequestSeeder)->run();
     }
 }

@@ -4,24 +4,22 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\JobTitle>
- */
 class JobTitleFactory extends Factory
 {
     public static $jobTitles = [
         'Manager',
+        'Supervisor',
         'Staff',
-        'Accounting',
-        'HRD',
-        'IT',
+        'Senior Staff',
+        'Junior Staff',
+        'HRD Officer',
+        'IT Engineer',
+        'System Analyst',
+        'Accountant',
+        'Business Analyst',
+        'Customer Relation',
     ];
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [

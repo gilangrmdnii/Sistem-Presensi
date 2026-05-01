@@ -33,7 +33,10 @@ $topbar-height:       64px;
 
 // 2. Bootstrap + icons
 @import "bootstrap/scss/bootstrap";
-@import "bootstrap-icons/font/bootstrap-icons";
+
+// Bootstrap Icons — load via CDN supaya font woff/woff2 ke-resolve dengan benar
+// (alternative ke @import "bootstrap-icons/font/bootstrap-icons" yang asetnya gagal di-bundle Vite)
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
 // 3. Fonts (Inter via Bunny Fonts loaded in layout)
 

@@ -3,50 +3,71 @@
 namespace Database\Seeders;
 
 use App\Models\Attendance;
+use App\Models\Barcode;
 use App\Models\User;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Carbon;
 
 class AttendanceSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $start = Carbon::now()->subDays(31);
+        $start = Carbon::now()->subDays(30);
         $end = Carbon::now();
-        $dates = $start->range($end)->toArray();
 
-        $statuses = ['present', 'present', 'present', 'present', 'late', 'excused', 'sick'];
+        $karyawan = User::where('role', User::ROLE_KARYAWAN)->get();
+        $barcodes = Barcode::all();
+        if ($karyawan->isEmpty() || $barcodes->isEmpty()) {
+            return;
+        }
 
-        foreach ($dates as $date) {
-            if ($date->isWeekend()) continue;
+        foreach ($start->range($end) as $date) {
+            if ($date->isWeekend()) {
+                continue;
+            }
 
-            /** @var User[] */
-            $users = User::inRandomOrder()->where('role', User::ROLE_KARYAWAN)->limit(5)->get();
+            foreach ($karyawan as $user) {
+                // 82% hadir, 8% terlambat, 4% izin, 3% sakit, 3% alpha
+                $roll = mt_rand(1, 100);
+                $status = match (true) {
+                    $roll <= 82 => 'present',
+                    $roll <= 90 => 'late',
+                    $roll <= 94 => 'excused',
+                    $roll <= 97 => 'sick',
+                    default => 'absent',
+                };
 
-            foreach ($users as $user) {
-                $status = fake()->randomElement($statuses);
-                $attr = ['date' => $date->toDateString(), 'user_id' => $user->id];
-                switch ($status) {
-                    case 'present':
-                        Attendance::factory()->present()->create($attr);
-                        break;
-                    case 'late':
-                        Attendance::factory()->present(late: true)->create($attr);
-                        break;
-                    case 'excused':
-                        Attendance::factory()->excused()->create($attr);
-                        break;
-                    case 'sick':
-                        Attendance::factory()->excused(sick: true)->create($attr);
-                        break;
-                    default:
-                        Attendance::factory()->absent()->create($attr);
-                        break;
+                // Hari ini — bikin realistic (hanya sebagian udah check-in, belum check-out)
+                $isToday = $date->isSameDay(Carbon::today());
+
+                $barcode = $barcodes->random();
+                $attr = [
+                    'user_id' => $user->id,
+                    'date' => $date->toDateString(),
+                    'status' => $status,
+                ];
+
+                if ($status === 'present' || $status === 'late') {
+                    $timeIn = $status === 'late'
+                        ? Carbon::createFromTime(8, mt_rand(16, 45), mt_rand(0, 59))
+                        : Carbon::createFromTime(7, mt_rand(30, 59), mt_rand(0, 59));
+
+                    $attr['barcode_id'] = $barcode->id;
+                    $attr['time_in'] = $timeIn->format('H:i:s');
+                    $attr['latitude'] = $barcode->latitude + (mt_rand(-10, 10) / 100000);
+                    $attr['longitude'] = $barcode->longitude + (mt_rand(-10, 10) / 100000);
+
+                    // Today: ~40% belum check-out
+                    if (!$isToday || mt_rand(1, 100) > 40) {
+                        $attr['time_out'] = Carbon::createFromTime(17, mt_rand(0, 45), mt_rand(0, 59))->format('H:i:s');
+                    }
+                } elseif ($status === 'excused') {
+                    $attr['note'] = 'Izin keperluan keluarga';
+                } elseif ($status === 'sick') {
+                    $attr['note'] = 'Sakit, istirahat di rumah';
                 }
+
+                Attendance::create($attr);
             }
         }
     }
