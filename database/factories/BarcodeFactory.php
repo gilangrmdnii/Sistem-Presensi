@@ -2,29 +2,20 @@
 
 namespace Database\Factories;
 
-use App\Models\Shift;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Barcode>
- */
 class BarcodeFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
-            'name' => fake()->unique()
-                ->randomElement(['Barcode 1', 'Barcode 2', 'Barcode 3', 'Barcode 4', 'Barcode 5']),
-            'value' => fake()->ean13(),
+            'name' => 'QR Code ' . fake()->unique()->word(),
+            'value' => 'MAZ-'.strtoupper(Str::random(10)),
             'radius' => 50,
-            'latitude' => fake()->latitude(-90, 90),
-            'longitude' => fake()->longitude(-90, 90),
+            // Default near Jakarta (MAZ office area)
+            'latitude' => -6.2088 + (mt_rand(-5, 5) / 1000),
+            'longitude' => 106.8456 + (mt_rand(-5, 5) / 1000),
         ];
     }
 }
