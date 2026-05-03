@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Attendance;
 use App\Models\Barcode;
+use App\Models\Setting;
 use Ballen\Distical\Calculator as DistanceCalculator;
 use Ballen\Distical\Entities\LatLong;
 use Illuminate\Http\Request;
@@ -23,9 +24,9 @@ class AttendanceController extends Controller
         return view('attendances.scan', [
             'today' => $today,
             'locations' => $locations,
-            'workStart' => config('presensi.work_start', env('WORK_START_TIME', '08:00')),
-            'workEnd' => config('presensi.work_end', env('WORK_END_TIME', '17:00')),
-            'tolerance' => (int) config('presensi.late_tolerance', env('LATE_TOLERANCE_MINUTES', 15)),
+            'workStart' => Setting::get('work_start', config('presensi.work_start')),
+            'workEnd' => Setting::get('work_end', config('presensi.work_end')),
+            'tolerance' => (int) Setting::get('late_tolerance', config('presensi.late_tolerance')),
         ]);
     }
 
@@ -67,8 +68,8 @@ class AttendanceController extends Controller
             $existing->update(['time_out' => $now->format('H:i:s')]);
             $message = 'Presensi pulang berhasil dicatat pukul '.$now->format('H:i').'.';
         } else {
-            $workStart = env('WORK_START_TIME', '08:00');
-            $tolerance = (int) env('LATE_TOLERANCE_MINUTES', 15);
+            $workStart = Setting::get('work_start', config('presensi.work_start'));
+            $tolerance = (int) Setting::get('late_tolerance', config('presensi.late_tolerance'));
             $cutoff = Carbon::createFromTimeString($workStart)->addMinutes($tolerance);
             $status = $now->gt($cutoff) ? 'late' : 'present';
 

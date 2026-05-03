@@ -50,15 +50,24 @@ npm install
 # 3. Generate app key
 php artisan key:generate
 
-# 4. Konfigurasi database di .env, lalu migrate + seed
+# 4. Konfigurasi database di .env (DB_DATABASE, DB_USERNAME, DB_PASSWORD)
+#    Buat database kosong dulu di MySQL: CREATE DATABASE db_absensi_karyawan;
+
+# 5. Migrate + seed data dummy lengkap (16 karyawan, 30 hari presensi, 20 izin)
 php artisan migrate --seed
 
-# 5. Build assets
+# 6. Symlink storage (untuk foto profil)
+php artisan storage:link
+
+# 7. Build assets frontend
 npm run build
 
-# 6. Jalankan server
+# 8. Jalankan server
 php artisan serve
 ```
+
+> **Note**: Kalau ada error saat migrate karena DB udah pernah dipakai,
+> pakai `php artisan migrate:fresh --seed` (hapus semua tabel + seed ulang).
 
 ### Seeder
 
