@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\ImportExportController;
 use App\Http\Controllers\Admin\MasterDataController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\AtasanAttendanceController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\HomeController;
@@ -95,6 +96,10 @@ Route::middleware([
         Route::match(['get', 'post', 'delete'], '/master/job-title', [MasterDataController::class, 'jobTitle'])->name('admin.masters.job-title');
         Route::match(['get', 'post', 'delete'], '/master/education', [MasterDataController::class, 'education'])->name('admin.masters.education');
         Route::get('/master/admin', [MasterDataController::class, 'admin'])->name('admin.masters.admin');
+
+        // Pengaturan sistem (jam kerja, lokasi kantor, dll)
+        Route::get('/settings', [SettingController::class, 'index'])->name('admin.settings');
+        Route::put('/settings', [SettingController::class, 'update'])->name('admin.settings.update');
 
         // Import/Export
         Route::get('/import-export/users', [ImportExportController::class, 'users'])->name('admin.import-export.users');

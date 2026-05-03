@@ -69,6 +69,9 @@
       <a class="nav-link {{ request()->routeIs('admin.import-export*') ? 'active' : '' }}" href="{{ route('admin.import-export.users') }}">
         <i class="bi bi-filetype-xlsx"></i> Import / Export
       </a>
+      <a class="nav-link {{ request()->routeIs('admin.settings*') ? 'active' : '' }}" href="{{ route('admin.settings') }}">
+        <i class="bi bi-gear"></i> Pengaturan
+      </a>
     @endif
 
     <div class="nav-group-title">Akun</div>
