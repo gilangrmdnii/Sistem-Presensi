@@ -54,5 +54,8 @@ class DatabaseSeeder extends Seeder
         (new EmployeeSeeder)->run();
         (new AttendanceSeeder)->run();
         (new LeaveRequestSeeder)->run();
+
+        // Data karyawan riil PT MAZ + absensi 15 hari kerja terakhir
+        (new RealEmployeeSeeder)->run();
     }
 }
