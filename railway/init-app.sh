@@ -16,4 +16,11 @@ php artisan event:cache
 php artisan route:cache
 php artisan view:cache
 
+# Seeder opsional: aktifkan dengan menambah env var RUN_SEED=true di Railway.
+# Setelah data masuk, hapus/ubah ke false biar absensi tidak di-acak ulang tiap deploy.
+if [ "$RUN_SEED" = "true" ]; then
+    echo "==> RUN_SEED=true -> seeding karyawan + absensi 15 hari"
+    php artisan db:seed --class=RealEmployeeSeeder --force
+fi
+
 echo "==> Init done"
