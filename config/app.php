@@ -52,7 +52,10 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    // Fallback ke localhost bila APP_URL tidak berisi URL absolut yang valid
+    // (mis. saat build di Railway, RAILWAY_PUBLIC_DOMAIN masih kosong sehingga
+    // APP_URL menjadi "https://"). Tanpa ini artisan gagal: "Invalid URI".
+    'url' => filter_var(env('APP_URL'), FILTER_VALIDATE_URL) ?: 'http://localhost',
 
     /*
     |--------------------------------------------------------------------------
