@@ -1,5 +1,8 @@
 /.phpunit.cache
 /node_modules
+# Lockfile di-generate per-platform; bikin npm bug optional-deps Rollup
+# pas build di Linux (Railway). Biarkan builder `npm install` bersih.
+/package-lock.json
 /public/build
 /public/temp
 /public/hot
