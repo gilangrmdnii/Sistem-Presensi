@@ -11,12 +11,52 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     });
 
-    // Sidebar toggle (mobile)
+    // Sidebar mobile: toggle + backdrop + auto-close
     const toggleBtn = document.querySelector('[data-sidebar-toggle]');
     const sidebar = document.querySelector('.app-sidebar');
     if (toggleBtn && sidebar) {
-        toggleBtn.addEventListener('click', () => sidebar.classList.toggle('show'));
+        const backdrop = document.createElement('div');
+        backdrop.className = 'sidebar-backdrop';
+        document.body.appendChild(backdrop);
+
+        const openSidebar = () => {
+            sidebar.classList.add('show');
+            backdrop.classList.add('show');
+            document.body.classList.add('sidebar-open');
+        };
+        const closeSidebar = () => {
+            sidebar.classList.remove('show');
+            backdrop.classList.remove('show');
+            document.body.classList.remove('sidebar-open');
+        };
+        const toggleSidebar = () =>
+            sidebar.classList.contains('show') ? closeSidebar() : openSidebar();
+
+        toggleBtn.addEventListener('click', toggleSidebar);
+        backdrop.addEventListener('click', closeSidebar);
+        // Tutup saat memilih menu (navigasi di mobile)
+        sidebar.querySelectorAll('a.nav-link').forEach((link) =>
+            link.addEventListener('click', closeSidebar)
+        );
+        // Tutup dengan tombol Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeSidebar();
+        });
+        // Reset state bila layar dibesarkan ke desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 992) closeSidebar();
+        });
     }
+
+    // Auto-bungkus tabel agar bisa di-scroll horizontal di layar sempit
+    document.querySelectorAll('table.table').forEach((table) => {
+        if (!table.closest('.table-responsive')) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'table-responsive';
+            table.parentNode.insertBefore(wrapper, table);
+            wrapper.appendChild(table);
+        }
+    });
 });
 
 // Leaflet lazy wrapper (only when map container exists)
