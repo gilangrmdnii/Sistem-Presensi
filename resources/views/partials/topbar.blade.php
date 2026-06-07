@@ -4,7 +4,7 @@
     <button type="button" class="btn btn-sm btn-outline-secondary d-lg-none" data-sidebar-toggle>
       <i class="bi bi-list"></i>
     </button>
-    <div class="small text-muted">
+    <div class="small text-muted topbar-date">
       {{ now()->translatedFormat('l, d F Y') }}
     </div>
   </div>
