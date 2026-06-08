@@ -11,7 +11,7 @@
 
   <div class="card border-0 shadow-sm">
     <div class="table-responsive">
-      <table class="table align-middle mb-0">
+      <table class="table table-stack align-middle mb-0">
         <thead>
           <tr>
             <th class="ps-3">Karyawan</th>
@@ -24,13 +24,13 @@
           @forelse ($karyawan as $k)
             @php($a = $k->today_attendance)
             <tr>
-              <td class="ps-3">
+              <td class="ps-3" data-label="Karyawan">
                 <div class="fw-semibold">{{ $k->name }}</div>
                 <div class="small text-muted">{{ $k->nip ?? '' }}</div>
               </td>
-              <td>{{ $a?->time_in ?? '—' }}</td>
-              <td>{{ $a?->time_out ?? '—' }}</td>
-              <td>
+              <td data-label="Jam Masuk">{{ $a?->time_in ?? '—' }}</td>
+              <td data-label="Jam Pulang">{{ $a?->time_out ?? '—' }}</td>
+              <td data-label="Status">
                 @if ($a)
                   <span class="badge-soft badge-{{ $a->status }}">{{ ucfirst($a->status) }}</span>
                 @else

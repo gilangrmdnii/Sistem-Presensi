@@ -82,15 +82,15 @@
             <p class="text-muted small mb-0">Belum ada riwayat presensi.</p>
           @else
             <div class="table-responsive">
-              <table class="table table-sm align-middle mb-0">
+              <table class="table table-sm table-stack align-middle mb-0">
                 <thead><tr><th>Tanggal</th><th>Masuk</th><th>Pulang</th><th>Status</th></tr></thead>
                 <tbody>
                   @foreach ($recentAttendances as $a)
                     <tr>
-                      <td>{{ \Illuminate\Support\Carbon::parse($a->date)->translatedFormat('d M Y') }}</td>
-                      <td>{{ $a->time_in ?? '—' }}</td>
-                      <td>{{ $a->time_out ?? '—' }}</td>
-                      <td><span class="badge-soft badge-{{ $a->status }}">{{ ucfirst($a->status) }}</span></td>
+                      <td data-label="Tanggal">{{ \Illuminate\Support\Carbon::parse($a->date)->translatedFormat('d M Y') }}</td>
+                      <td data-label="Masuk">{{ $a->time_in ?? '—' }}</td>
+                      <td data-label="Pulang">{{ $a->time_out ?? '—' }}</td>
+                      <td data-label="Status"><span class="badge-soft badge-{{ $a->status }}">{{ ucfirst($a->status) }}</span></td>
                     </tr>
                   @endforeach
                 </tbody>

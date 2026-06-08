@@ -50,7 +50,7 @@
 
   <div class="card border-0 shadow-sm">
     <div class="table-responsive">
-      <table class="table align-middle mb-0">
+      <table class="table table-stack align-middle mb-0">
         <thead>
           <tr>
             <th class="ps-3">Tanggal</th>
@@ -65,11 +65,11 @@
           @foreach (Carbon::parse($month.'-01')->range($end) as $date)
             @php($a = $attendances->get($date->toDateString()))
             <tr class="{{ $date->isWeekend() ? 'table-light text-muted' : '' }}">
-              <td class="ps-3">{{ $date->translatedFormat('d M Y') }}</td>
-              <td class="small">{{ $date->translatedFormat('l') }}</td>
-              <td>{{ $a?->time_in ?? '—' }}</td>
-              <td>{{ $a?->time_out ?? '—' }}</td>
-              <td>
+              <td class="ps-3" data-label="Tanggal">{{ $date->translatedFormat('d M Y') }}</td>
+              <td class="small" data-label="Hari">{{ $date->translatedFormat('l') }}</td>
+              <td data-label="Masuk">{{ $a?->time_in ?? '—' }}</td>
+              <td data-label="Pulang">{{ $a?->time_out ?? '—' }}</td>
+              <td data-label="Status">
                 @if ($a)
                   <span class="badge-soft badge-{{ $a->status }}">{{ ucfirst($a->status) }}</span>
                 @elseif ($date->isWeekend())
@@ -80,7 +80,7 @@
                   <span class="badge-soft badge-absent">Alpha</span>
                 @endif
               </td>
-              <td class="pe-3 small text-muted">{{ $a?->note ?? '' }}</td>
+              <td class="pe-3 small text-muted" data-label="Catatan">{{ $a?->note ?? '' }}</td>
             </tr>
           @endforeach
         </tbody>

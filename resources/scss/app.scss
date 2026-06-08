@@ -279,6 +279,64 @@ body {
     td, th { vertical-align: middle; }
 }
 
+// === Tabel "stacked card" di layar HP ===
+// Tambahkan class .table-stack pada <table> dan data-label="Judul Kolom" pada
+// tiap <td>. Di layar kecil, tiap baris berubah jadi kartu dengan label kiri-kanan.
+@media (max-width: 575.98px) {
+    .table-stack {
+        thead { display: none; }
+
+        tbody, tr, td { display: block; width: 100%; }
+
+        tr {
+            border: 1px solid $card-border-color;
+            border-radius: $border-radius;
+            padding: .25rem .9rem;
+            margin: .75rem;
+            background: #fff;
+            box-shadow: $card-box-shadow;
+        }
+
+        td {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            text-align: right;
+            padding: .55rem 0 !important;
+            border: 0;
+            border-bottom: 1px solid $card-border-color;
+
+            &:last-child { border-bottom: 0; }
+
+            // Label kolom (dari atribut data-label) di sisi kiri
+            &::before {
+                content: attr(data-label);
+                font-weight: 600;
+                font-size: .72rem;
+                text-transform: uppercase;
+                letter-spacing: .03em;
+                color: $secondary;
+                text-align: left;
+                flex: 0 0 auto;
+            }
+
+            // Sel aksi: sembunyikan label, tombol rata kanan & boleh wrap
+            &.text-end {
+                flex-wrap: wrap;
+                justify-content: flex-end;
+                gap: .4rem;
+                &::before { display: none; }
+                form.d-inline { display: inline-flex !important; }
+            }
+        }
+
+        // Baris kosong "Tidak ada data" tetap rata tengah
+        td[colspan]::before { content: none; }
+        td[colspan] { justify-content: center; text-align: center; }
+    }
+}
+
 .badge-soft {
     padding: .375em .625em;
     font-weight: 500;

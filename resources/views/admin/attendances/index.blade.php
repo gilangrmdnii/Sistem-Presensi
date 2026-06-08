@@ -71,7 +71,7 @@
       <span class="text-muted small">{{ $employees->count() }} karyawan</span>
     </div>
     <div class="table-responsive mt-3">
-      <table class="table align-middle mb-0">
+      <table class="table table-stack align-middle mb-0">
         <thead>
           <tr>
             <th class="ps-3">Karyawan</th>
@@ -86,7 +86,7 @@
           @forelse ($employees as $e)
             @php($a = $e->today_attendance)
             <tr>
-              <td class="ps-3">
+              <td class="ps-3" data-label="Karyawan">
                 <div class="d-flex align-items-center gap-2">
                   <img src="{{ $e->profile_photo_url }}" width="32" height="32" class="rounded-circle" style="object-fit:cover">
                   <div>
@@ -95,17 +95,17 @@
                   </div>
                 </div>
               </td>
-              <td class="small">{{ $e->division?->name ?? '—' }}</td>
-              <td>{{ $a?->time_in ?? '—' }}</td>
-              <td>{{ $a?->time_out ?? '—' }}</td>
-              <td>
+              <td class="small" data-label="Divisi">{{ $e->division?->name ?? '—' }}</td>
+              <td data-label="Jam Masuk">{{ $a?->time_in ?? '—' }}</td>
+              <td data-label="Jam Pulang">{{ $a?->time_out ?? '—' }}</td>
+              <td data-label="Status">
                 @if ($a)
                   <span class="badge-soft badge-{{ $a->status }}">{{ ucfirst($a->status) }}</span>
                 @else
                   <span class="badge-soft badge-absent">Belum Absen</span>
                 @endif
               </td>
-              <td class="pe-3 small">
+              <td class="pe-3 small" data-label="Lokasi">
                 @if ($a?->latitude && $a?->longitude)
                   <a href="https://maps.google.com/?q={{ $a->latitude }},{{ $a->longitude }}" target="_blank"
                      class="text-decoration-none">

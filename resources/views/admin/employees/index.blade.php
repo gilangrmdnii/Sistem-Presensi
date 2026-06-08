@@ -43,7 +43,7 @@
 
   <div class="card border-0 shadow-sm">
     <div class="table-responsive">
-      <table class="table align-middle mb-0">
+      <table class="table table-stack align-middle mb-0">
         <thead>
           <tr>
             <th class="ps-3">NIP</th>
@@ -58,8 +58,8 @@
         <tbody>
           @forelse ($employees as $e)
             <tr>
-              <td class="ps-3 small text-muted">{{ $e->nip ?? '—' }}</td>
-              <td>
+              <td class="ps-3 small text-muted" data-label="NIP">{{ $e->nip ?? '—' }}</td>
+              <td data-label="Nama">
                 <div class="d-flex align-items-center gap-2">
                   <img src="{{ $e->profile_photo_url }}" width="32" height="32" class="rounded-circle" style="object-fit:cover">
                   <div>
@@ -68,17 +68,17 @@
                   </div>
                 </div>
               </td>
-              <td class="small">{{ $e->email }}</td>
-              <td class="small">{{ $e->division?->name ?? '—' }}</td>
-              <td><span class="badge text-bg-light border">{{ $e->role_label }}</span></td>
-              <td>
+              <td class="small" data-label="Email">{{ $e->email }}</td>
+              <td class="small" data-label="Divisi">{{ $e->division?->name ?? '—' }}</td>
+              <td data-label="Role"><span class="badge text-bg-light border">{{ $e->role_label }}</span></td>
+              <td data-label="Status">
                 @if ($e->isActive)
                   <span class="badge-soft badge-approved">Aktif</span>
                 @else
                   <span class="badge-soft badge-rejected">Nonaktif</span>
                 @endif
               </td>
-              <td class="pe-3 text-end">
+              <td class="pe-3 text-end" data-label="Aksi">
                 <a href="{{ route('admin.employees.edit', $e) }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil"></i></a>
                 <form action="{{ route('admin.employees.destroy', $e) }}" method="POST" class="d-inline" onsubmit="return confirm('Hapus karyawan ini?')">
                   @csrf @method('DELETE')
