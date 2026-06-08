@@ -37,7 +37,6 @@ class AttendanceSeeder extends Seeder
                     default => 'absent',
                 };
 
-                // Hari ini — bikin realistic (hanya sebagian udah check-in, belum check-out)
                 $isToday = $date->isSameDay(Carbon::today());
 
                 $barcode = $barcodes->random();

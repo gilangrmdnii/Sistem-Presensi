@@ -50,12 +50,10 @@ class DatabaseSeeder extends Seeder
             Shift::factory(2)->create();
         }
 
-        // Data dummy lengkap untuk presentasi / screenshot
         (new EmployeeSeeder)->run();
         (new AttendanceSeeder)->run();
         (new LeaveRequestSeeder)->run();
 
-        // Data karyawan riil PT MAZ + absensi 15 hari kerja terakhir
         (new RealEmployeeSeeder)->run();
     }
 }
