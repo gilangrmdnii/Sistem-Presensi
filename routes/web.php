@@ -27,8 +27,8 @@ Route::middleware([
 
     Route::get('/home', function () {
         $user = Auth::user();
-        if ($user->isHrd) return redirect('/hrd/dashboard');
-        if ($user->isAtasanDivisi) return redirect('/atasan/leave-approvals');
+        if ($user->isHrd) return redirect()->route('admin.dashboard');
+        if ($user->isAtasanDivisi) return redirect()->route('leave-approvals.index');
         return app(HomeController::class)(request());
     })->name('home');
 
