@@ -27,7 +27,7 @@
               <td class="ps-3">{{ $lr->created_at->translatedFormat('d M Y H:i') }}</td>
               <td>{{ $lr->type_label }}</td>
               <td>{{ $lr->start_date->translatedFormat('d M Y') }} &mdash; {{ $lr->end_date->translatedFormat('d M Y') }}</td>
-              <td>{{ $lr->duration_days }} hari</td>
+              <td>{{ $lr->duration_days }} hari kerja</td>
               <td><span class="badge-soft badge-{{ $lr->status }}">{{ $lr->status_label }}</span></td>
               <td class="pe-3 text-end">
                 <a href="{{ route('leave-requests.show', $lr) }}" class="btn btn-sm btn-outline-secondary">

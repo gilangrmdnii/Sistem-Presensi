@@ -17,7 +17,7 @@
             <dt class="col-sm-4 text-muted">Jenis</dt>
             <dd class="col-sm-8">{{ $leaveRequest->type_label }}</dd>
             <dt class="col-sm-4 text-muted">Periode</dt>
-            <dd class="col-sm-8">{{ $leaveRequest->start_date->translatedFormat('d F Y') }} &mdash; {{ $leaveRequest->end_date->translatedFormat('d F Y') }} ({{ $leaveRequest->duration_days }} hari)</dd>
+            <dd class="col-sm-8">{{ $leaveRequest->start_date->translatedFormat('d F Y') }} &mdash; {{ $leaveRequest->end_date->translatedFormat('d F Y') }} ({{ $leaveRequest->duration_days }} hari kerja)</dd>
             <dt class="col-sm-4 text-muted">Alasan</dt>
             <dd class="col-sm-8">{{ $leaveRequest->reason }}</dd>
             @if ($leaveRequest->attachment_url)

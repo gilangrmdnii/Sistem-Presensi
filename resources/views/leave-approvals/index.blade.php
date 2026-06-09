@@ -38,7 +38,7 @@
               <td class="small" data-label="Divisi">{{ $lr->user->division?->name ?? '—' }}</td>
               <td data-label="Jenis">{{ $lr->type_label }}</td>
               <td class="small" data-label="Periode">{{ $lr->start_date->translatedFormat('d M Y') }} &mdash; {{ $lr->end_date->translatedFormat('d M Y') }}</td>
-              <td data-label="Durasi">{{ $lr->duration_days }}h</td>
+              <td data-label="Durasi">{{ $lr->duration_days }} hari kerja</td>
               <td data-label="Status"><span class="badge-soft badge-{{ $lr->status }}">{{ $lr->status_label }}</span></td>
               <td class="pe-3 text-end" data-label="Aksi">
                 <a href="{{ route('leave-approvals.show', $lr) }}" class="btn btn-sm btn-outline-primary">

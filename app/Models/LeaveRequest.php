@@ -80,7 +80,10 @@ class LeaveRequest extends Model
 
     public function getDurationDaysAttribute(): int
     {
-        return $this->start_date->diffInDays($this->end_date) + 1;
+        // Hitung hanya hari kerja (Senin–Jumat); Sabtu & Minggu tidak dihitung.
+        return collect($this->start_date->toPeriod($this->end_date))
+            ->reject(fn ($date) => $date->isWeekend())
+            ->count();
     }
 
     public function attachmentUrl(): Attribute
