@@ -4,7 +4,7 @@
     Buat Barcode Baru
   </x-button>
   <x-secondary-button class="mb-4">
-    <a href="{{ route('admin.barcodes.downloadall') }}">Download Semua</a>
+    <a href="{{ route('admin.barcodes.downloadall') }}">Unduh Semua</a>
   </x-secondary-button>
   <div class="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
     @foreach ($barcodes as $barcode)
@@ -13,13 +13,13 @@
 
         <div class="mt-4 flex items-center justify-center gap-2">
           <x-secondary-button href="{{ route('admin.barcodes.download', $barcode->id) }}">
-            Download
+            Unduh
           </x-secondary-button>
           <x-button href="{{ route('admin.barcodes.edit', $barcode->id) }}">
             Edit
           </x-button>
           <x-danger-button wire:click="confirmDeletion({{ $barcode->id }}, '{{ $barcode->name }}')">
-            Delete
+            Hapus
           </x-danger-button>
         </div>
         <div class="container flex items-center justify-center p-4">

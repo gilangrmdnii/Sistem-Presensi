@@ -63,7 +63,7 @@
             {{ __('Time Out') }}
           </th>
           <th scope="col" class="relative">
-            <span class="sr-only">Actions</span>
+            <span class="sr-only">Aksi</span>
           </th>
         </tr>
       </thead>

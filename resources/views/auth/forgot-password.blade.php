@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
-  <p class="text-muted small mb-3">Masukkan email, kami akan kirim link reset password.</p>
+  <p class="text-muted small mb-3">Masukkan email Anda, kami akan mengirim tautan untuk mengatur ulang kata sandi.</p>
 
   @if (session('status'))
     <div class="alert alert-success small">{{ session('status') }}</div>
@@ -21,9 +21,9 @@
       <label class="form-label small fw-semibold">Email</label>
       <input type="email" name="email" class="form-control" required autofocus value="{{ old('email') }}">
     </div>
-    <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">Kirim Link Reset</button>
+    <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">Kirim Tautan Atur Ulang Kata Sandi</button>
     <div class="text-center mt-3">
-      <a href="{{ route('login') }}" class="small text-muted text-decoration-none">Kembali ke login</a>
+      <a href="{{ route('login') }}" class="small text-muted text-decoration-none">Kembali ke halaman masuk</a>
     </div>
   </form>
 @endsection

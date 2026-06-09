@@ -53,7 +53,7 @@
       <div class="stat-card info">
         <div class="stat-icon"><i class="bi bi-envelope-paper"></i></div>
         <div class="stat-value">{{ $leave }}</div>
-        <div class="stat-label">Izin / Sakit</div>
+        <div class="stat-label">Izin / Sakit / Cuti</div>
       </div>
     </div>
     <div class="col-md-3">

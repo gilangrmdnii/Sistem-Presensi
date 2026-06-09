@@ -75,7 +75,7 @@
             {{ __('City') }}
           </th>
           <th scope="col" class="relative px-6 py-3">
-            <span class="sr-only">Actions</span>
+            <span class="sr-only">Aksi</span>
           </th>
         </tr>
       </thead>
@@ -118,7 +118,7 @@
                 Edit
               </x-button>
               <x-danger-button wire:click="confirmDeletion('{{ $user->id }}', '{{ $user->name }}')">
-                Delete
+                Hapus
               </x-danger-button>
             </td>
           </tr>
@@ -227,8 +227,8 @@
           <div class="w-full">
             <x-label for="password">{{ __('Password') }}</x-label>
             <x-input id="password" class="mt-1 block w-full" type="password" wire:model="form.password"
-              placeholder="New Password" />
-            <p class="text-sm dark:text-gray-400">Default password: <b>password</b></p>
+              placeholder="Kata Sandi Baru" />
+            <p class="text-sm dark:text-gray-400">Kata sandi default: <b>password</b></p>
             @error('form.password')
               <x-input-error for="form.password" class="mt-2" message="{{ $message }}" />
             @enderror
@@ -430,7 +430,7 @@
           <div class="w-full">
             <x-label for="password">{{ __('Password') }}</x-label>
             <x-input id="password" class="mt-1 block w-full" type="password" wire:model="form.password"
-              placeholder="New Password" />
+              placeholder="Kata Sandi Baru" />
             @error('form.password')
               <x-input-error for="form.password" class="mt-2" message="{{ $message }}" />
             @enderror

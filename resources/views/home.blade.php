@@ -27,7 +27,7 @@
       <div class="stat-card info">
         <div class="stat-icon"><i class="bi bi-envelope-paper"></i></div>
         <div class="stat-value">{{ $excused }}</div>
-        <div class="stat-label">Izin / sakit bulan ini</div>
+        <div class="stat-label">Izin / sakit / Cuti bulan ini</div>
       </div>
     </div>
     <div class="col-md-6 col-lg-3">

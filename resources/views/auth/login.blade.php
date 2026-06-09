@@ -21,7 +21,7 @@
              value="{{ old('email') }}" placeholder="nama@maznusantara.co.id">
     </div>
     <div class="mb-3">
-      <label class="form-label small fw-semibold">Password</label>
+      <label class="form-label small fw-semibold">Kata Sandi</label>
       <input type="password" name="password" class="form-control" required placeholder="••••••••">
     </div>
     <div class="form-check mb-3">
@@ -34,7 +34,7 @@
 
     @if (Route::has('password.request'))
       <div class="text-center mt-3">
-        <a href="{{ route('password.request') }}" class="small text-muted text-decoration-none">Lupa password?</a>
+        <a href="{{ route('password.request') }}" class="small text-muted text-decoration-none">Lupa kata sandi?</a>
       </div>
     @endif
   </form>

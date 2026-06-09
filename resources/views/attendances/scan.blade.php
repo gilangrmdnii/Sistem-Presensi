@@ -5,7 +5,7 @@
     <div class="col-lg-7">
       <div class="card border-0 shadow-sm">
         <div class="card-body">
-          <h6 class="fw-bold mb-3"><i class="bi bi-qr-code-scan me-2 text-primary"></i>Scanner</h6>
+          <h6 class="fw-bold mb-3"><i class="bi bi-qr-code-scan me-2 text-primary"></i>Pemindai</h6>
 
           <div class="qr-scanner-wrap">
             <div id="qr-reader" style="width:100%"></div>

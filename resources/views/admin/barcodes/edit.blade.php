@@ -10,9 +10,9 @@
     @include('admin.barcodes._form')
 
     <div class="d-flex gap-2 mt-3">
-      <button class="btn btn-primary"><i class="bi bi-save me-2"></i>Update QR Code</button>
+      <button class="btn btn-primary"><i class="bi bi-save me-2"></i>Perbarui QR Code</button>
       <a href="{{ route('admin.barcodes.download', $barcode->id) }}" class="btn btn-outline-primary">
-        <i class="bi bi-download me-2"></i>Download QR
+        <i class="bi bi-download me-2"></i>Unduh QR
       </a>
       <a href="{{ route('admin.barcodes') }}" class="btn btn-outline-secondary">Batal</a>
     </div>

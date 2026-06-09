@@ -31,7 +31,7 @@
       <div class="flex flex-col gap-3">
         @if ($currentAttendance['attachment'])
           <x-label for="attachment" value="{{ __('Attachment') }}"></x-label>
-          <img src="{{ $currentAttendance['attachment'] }}" alt="Attachment"
+          <img src="{{ $currentAttendance['attachment'] }}" alt="Lampiran"
             class="max-h-48 object-contain sm:max-h-64 md:max-h-72">
         @endif
         @if ($currentAttendance['note'])

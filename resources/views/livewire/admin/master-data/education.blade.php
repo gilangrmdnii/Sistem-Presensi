@@ -14,7 +14,7 @@
           Pendidikan
         </th>
         <th scope="col" class="relative px-6 py-3">
-          <span class="sr-only">Actions</span>
+          <span class="sr-only">Aksi</span>
         </th>
       </tr>
     </thead>
@@ -29,7 +29,7 @@
               Edit
             </x-button>
             <x-danger-button wire:click="confirmDeletion({{ $education->id }}, '{{ $education->name }}')">
-              Delete
+              Hapus
             </x-danger-button>
             </form>
           </td>

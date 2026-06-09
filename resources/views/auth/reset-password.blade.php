@@ -17,13 +17,13 @@
       <input type="email" name="email" class="form-control" required value="{{ old('email', $request->email) }}">
     </div>
     <div class="mb-3">
-      <label class="form-label small fw-semibold">Password Baru</label>
+      <label class="form-label small fw-semibold">Kata Sandi Baru</label>
       <input type="password" name="password" class="form-control" required>
     </div>
     <div class="mb-3">
-      <label class="form-label small fw-semibold">Konfirmasi Password</label>
+      <label class="form-label small fw-semibold">Konfirmasi Kata Sandi</label>
       <input type="password" name="password_confirmation" class="form-control" required>
     </div>
-    <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">Reset Password</button>
+    <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">Atur Ulang Kata Sandi</button>
   </form>
 @endsection

@@ -122,7 +122,7 @@
           @endif
           @if ($isPerDayFilter)
             <th scope="col" class="relative">
-              <span class="sr-only">Actions</span>
+              <span class="sr-only">Aksi</span>
             </th>
           @endif
         </tr>
