@@ -15,7 +15,7 @@
             <dd class="col-sm-8">{{ $leaveRequest->start_date->translatedFormat('d F Y') }} &mdash; {{ $leaveRequest->end_date->translatedFormat('d F Y') }}</dd>
 
             <dt class="col-sm-4 text-muted">Durasi</dt>
-            <dd class="col-sm-8">{{ $leaveRequest->duration_days }} hari</dd>
+            <dd class="col-sm-8">{{ $leaveRequest->duration_days }} hari kerja</dd>
 
             <dt class="col-sm-4 text-muted">Alasan</dt>
             <dd class="col-sm-8">{{ $leaveRequest->reason }}</dd>
