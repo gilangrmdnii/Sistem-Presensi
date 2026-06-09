@@ -29,7 +29,7 @@
             {{ __('Phone Number') }}
           </th>
           <th scope="col" class="relative px-6 py-3">
-            <span class="sr-only">Actions</span>
+            <span class="sr-only">Aksi</span>
           </th>
         </tr>
       </thead>
@@ -69,7 +69,7 @@
                 </x-button>
                 @if (Auth::user()->isSuperadmin && $user->isUser)
                   <x-danger-button wire:click="confirmDeletion('{{ $user->id }}', '{{ $user->name }}')">
-                    Delete
+                    Hapus
                   </x-danger-button>
                 @endif
               @endif
@@ -180,8 +180,8 @@
           <div class="w-full">
             <x-label for="password">{{ __('Password') }}</x-label>
             <x-input id="password" class="mt-1 block w-full" type="password" wire:model="form.password"
-              placeholder="New Password" required />
-            <p class="text-sm dark:text-gray-400">Default password: <b>admin</b></p>
+              placeholder="Kata Sandi Baru" required />
+            <p class="text-sm dark:text-gray-400">Kata sandi default: <b>admin</b></p>
             @error('form.password')
               <x-input-error for="form.password" class="mt-2" message="{{ $message }}" />
             @enderror
@@ -351,7 +351,7 @@
           <div class="w-full">
             <x-label for="password">{{ __('Password') }}</x-label>
             <x-input id="password" class="mt-1 block w-full" type="password" wire:model="form.password"
-              placeholder="New Password" />
+              placeholder="Kata Sandi Baru" />
             @error('form.password')
               <x-input-error for="form.password" class="mt-2" message="{{ $message }}" />
             @enderror

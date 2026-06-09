@@ -5,7 +5,7 @@
     <div class="text-muted small">Total: {{ $barcodes->total() }}</div>
     <div class="d-flex gap-2">
       <a href="{{ route('admin.barcodes.downloadall') }}" class="btn btn-sm btn-outline-primary">
-        <i class="bi bi-file-zip me-1"></i>Download Semua (ZIP)
+        <i class="bi bi-file-zip me-1"></i>Unduh Semua (ZIP)
       </a>
       <a href="{{ route('admin.barcodes.create') }}" class="btn btn-sm btn-primary">
         <i class="bi bi-plus-lg me-1"></i>Tambah QR Code

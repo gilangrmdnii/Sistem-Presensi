@@ -42,7 +42,7 @@
               <td data-label="Status"><span class="badge-soft badge-{{ $lr->status }}">{{ $lr->status_label }}</span></td>
               <td class="pe-3 text-end" data-label="Aksi">
                 <a href="{{ route('leave-approvals.show', $lr) }}" class="btn btn-sm btn-outline-primary">
-                  <i class="bi bi-eye"></i> Review
+                  <i class="bi bi-eye"></i> Tinjau
                 </a>
               </td>
             </tr>

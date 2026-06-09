@@ -88,7 +88,7 @@
   </div>
 
   <div class="col-md-6">
-    <label class="form-label small fw-semibold">Password {!! $e ? '<span class="text-muted">(kosongkan jika tidak diubah)</span>' : '*' !!}</label>
+    <label class="form-label small fw-semibold">Kata Sandi {!! $e ? '<span class="text-muted">(kosongkan jika tidak diubah)</span>' : '*' !!}</label>
     <input type="text" name="password" class="form-control" {{ $e ? '' : 'required' }}
            placeholder="{{ $e ? 'Biarkan kosong' : 'Min. 6 karakter' }}">
   </div>
