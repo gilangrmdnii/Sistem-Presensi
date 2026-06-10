@@ -12,6 +12,15 @@
             <div id="qr-status" class="text-center small text-muted mt-2">
               <i class="bi bi-info-circle me-1"></i>Izinkan akses kamera & lokasi.
             </div>
+
+            <div class="text-center text-muted small my-2">— atau —</div>
+            <label class="btn btn-outline-secondary btn-sm w-100 mb-0">
+              <i class="bi bi-upload me-2"></i>Upload Gambar QR
+              <input type="file" id="qr-file" accept="image/*" hidden>
+            </label>
+            <div class="text-center text-muted" style="font-size:.72rem">
+              Tidak bisa pakai kamera? Unggah foto/screenshot QR kantor.
+            </div>
           </div>
 
           <form id="scan-form" method="POST" action="{{ route('attendance.store') }}" class="mt-3">
@@ -105,7 +114,27 @@
       },
       () => {}
     ).catch((err) => {
-      status.innerHTML = '<span class="text-danger">Gagal akses kamera: '+err+'</span>';
+      status.innerHTML = '<span class="text-danger">Gagal akses kamera: '+err+'. Anda bisa unggah gambar QR di bawah.</span>';
+    });
+
+    // Alternatif kamera: baca QR dari gambar yang diunggah
+    const fileInput = document.getElementById('qr-file');
+    fileInput.addEventListener('change', async (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      status.innerHTML = '<i class="bi bi-hourglass-split me-1"></i>Membaca QR dari gambar...';
+      // Kamera harus dihentikan dulu sebelum memindai berkas
+      try { await qr.stop(); } catch (_) {}
+      try {
+        const decoded = await qr.scanFile(file, true);
+        qrValueEl.value = decoded;
+        status.innerHTML = '<i class="bi bi-check-circle-fill text-success me-1"></i>QR terbaca dari gambar. Tekan tombol kirim.';
+        enableSubmitIfReady();
+      } catch (err) {
+        status.innerHTML = '<span class="text-danger">QR tidak terbaca dari gambar. Pastikan gambar jelas & berisi QR kantor.</span>';
+      } finally {
+        fileInput.value = '';
+      }
     });
   })();
 </script>
