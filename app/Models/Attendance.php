@@ -18,6 +18,15 @@ class Attendance extends Model
     use HasFactory;
     use HasTimestamps;
 
+    /** Label status presensi dalam Bahasa Indonesia. */
+    public const STATUS_LABELS = [
+        'present' => 'Hadir',
+        'late'    => 'Terlambat',
+        'excused' => 'Izin',
+        'sick'    => 'Sakit',
+        'absent'  => 'Tidak Hadir',
+    ];
+
     protected $fillable = [
         'user_id',
         'barcode_id',
@@ -39,6 +48,11 @@ class Attendance extends Model
             'time_in' => 'datetime:H:i:s',
             'time_out' => 'datetime:H:i:s',
         ];
+    }
+
+    public function getStatusLabelAttribute(): string
+    {
+        return self::STATUS_LABELS[$this->status] ?? ucfirst((string) $this->status);
     }
 
     public function user()

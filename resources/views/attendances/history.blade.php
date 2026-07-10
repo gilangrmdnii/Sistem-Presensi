@@ -71,7 +71,7 @@
               <td data-label="Pulang">{{ $a?->time_out ?? '—' }}</td>
               <td data-label="Status">
                 @if ($a)
-                  <span class="badge-soft badge-{{ $a->status }}">{{ ucfirst($a->status) }}</span>
+                  <span class="badge-soft badge-{{ $a->status }}">{{ $a->status_label }}</span>
                 @elseif ($date->isWeekend())
                   <span class="small text-muted">Libur</span>
                 @elseif ($date->isFuture())

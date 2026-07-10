@@ -32,7 +32,7 @@
               <td data-label="Jam Pulang">{{ $a?->time_out ?? '—' }}</td>
               <td data-label="Status">
                 @if ($a)
-                  <span class="badge-soft badge-{{ $a->status }}">{{ ucfirst($a->status) }}</span>
+                  <span class="badge-soft badge-{{ $a->status }}">{{ $a->status_label }}</span>
                 @else
                   <span class="badge-soft badge-absent">Belum Absen</span>
                 @endif

@@ -47,7 +47,7 @@
 
           @if ($todayAttendance)
             <div class="mb-2">
-              <span class="badge-soft badge-{{ $todayAttendance->status }}">{{ ucfirst($todayAttendance->status) }}</span>
+              <span class="badge-soft badge-{{ $todayAttendance->status }}">{{ $todayAttendance->status_label }}</span>
             </div>
             <dl class="row small mb-0">
               <dt class="col-5 text-muted">Tanggal</dt>
@@ -90,7 +90,7 @@
                       <td data-label="Tanggal">{{ \Illuminate\Support\Carbon::parse($a->date)->translatedFormat('d M Y') }}</td>
                       <td data-label="Masuk">{{ $a->time_in ?? '—' }}</td>
                       <td data-label="Pulang">{{ $a->time_out ?? '—' }}</td>
-                      <td data-label="Status"><span class="badge-soft badge-{{ $a->status }}">{{ ucfirst($a->status) }}</span></td>
+                      <td data-label="Status"><span class="badge-soft badge-{{ $a->status }}">{{ $a->status_label }}</span></td>
                     </tr>
                   @endforeach
                 </tbody>

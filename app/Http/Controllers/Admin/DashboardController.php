@@ -23,17 +23,21 @@ class DashboardController extends Controller
 
         $pendingLeaves = LeaveRequest::where('status', LeaveRequest::STATUS_PENDING)->count();
 
-        // 7-day trend
-        $trend = collect(range(6, 0))->map(function ($daysAgo) {
-            $date = Carbon::today()->subDays($daysAgo);
-            $count = Attendance::whereDate('date', $date)
-                ->whereIn('status', ['present', 'late'])
-                ->count();
-            return [
-                'label' => $date->translatedFormat('D d/m'),
-                'count' => $count,
-            ];
-        });
+        // Tren kehadiran mingguan: 5 hari kerja terakhir (Senin–Jumat), tanpa akhir pekan
+        $trend = collect();
+        $cursor = Carbon::today();
+        while ($trend->count() < 5) {
+            if (! $cursor->isWeekend()) {
+                $date = $cursor->copy();
+                $trend->prepend([
+                    'label' => $date->translatedFormat('D d/m'),
+                    'count' => Attendance::whereDate('date', $date)
+                        ->whereIn('status', ['present', 'late'])
+                        ->count(),
+                ]);
+            }
+            $cursor->subDay();
+        }
 
         $recentLeaves = LeaveRequest::with('user')
             ->latest()

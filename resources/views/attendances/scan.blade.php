@@ -43,7 +43,7 @@
           @if ($today)
             <dl class="row small mb-0">
               <dt class="col-5 text-muted">Status</dt>
-              <dd class="col-7"><span class="badge-soft badge-{{ $today->status }}">{{ ucfirst($today->status) }}</span></dd>
+              <dd class="col-7"><span class="badge-soft badge-{{ $today->status }}">{{ $today->status_label }}</span></dd>
               <dt class="col-5 text-muted">Jam Masuk</dt>
               <dd class="col-7">{{ $today->time_in ?? '—' }}</dd>
               <dt class="col-5 text-muted">Jam Pulang</dt>

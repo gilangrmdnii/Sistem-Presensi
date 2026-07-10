@@ -36,7 +36,7 @@
     <div class="col-lg-7">
       <div class="card border-0 shadow-sm h-100">
         <div class="card-body">
-          <h6 class="fw-bold mb-3"><i class="bi bi-graph-up me-2 text-primary"></i>Tren Kehadiran 7 Hari</h6>
+          <h6 class="fw-bold mb-3"><i class="bi bi-graph-up me-2 text-primary"></i>Tren Kehadiran Mingguan</h6>
           <canvas id="trendChart" height="100"></canvas>
         </div>
       </div>

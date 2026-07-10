@@ -40,7 +40,7 @@
           <td>{{ $r->user?->division?->name ?? '-' }}</td>
           <td>{{ $r->time_in ?? '-' }}</td>
           <td>{{ $r->time_out ?? '-' }}</td>
-          <td>{{ ucfirst($r->status) }}</td>
+          <td>{{ $r->status_label }}</td>
         </tr>
       @empty
         <tr><td colspan="8" style="text-align:center">Tidak ada data.</td></tr>
