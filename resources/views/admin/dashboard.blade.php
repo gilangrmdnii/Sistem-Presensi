@@ -66,11 +66,11 @@
 @endsection
 
 @push('scripts')
-<script type="module">
-  import Chart from 'https://cdn.jsdelivr.net/npm/chart.js@4.4.7/+esm';
-  const ctx = document.getElementById('trendChart');
-  if (ctx) {
-    new Chart(ctx, {
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const ctx = document.getElementById('trendChart');
+    if (ctx && window.Chart) {
+      new window.Chart(ctx, {
       type: 'line',
       data: {
         labels: @json($trend->pluck('label')),
@@ -83,11 +83,12 @@
           tension: .35,
         }],
       },
-      options: {
-        plugins: { legend: { display: false } },
-        scales: { y: { beginAtZero: true, ticks: { precision: 0 } } },
-      },
-    });
-  }
+        options: {
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true, ticks: { precision: 0 } } },
+        },
+      });
+    }
+  });
 </script>
 @endpush
