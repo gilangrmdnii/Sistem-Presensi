@@ -119,3 +119,5 @@ Livewire::setScriptRoute(function ($handle) {
     $path = config('app.debug') ? '/livewire/livewire.js' : '/livewire/livewire.min.js';
     return Route::get(url($path), $handle);
 });
+
+
